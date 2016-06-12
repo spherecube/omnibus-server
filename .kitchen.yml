@@ -1,0 +1,73 @@
+#
+# NOTE: this runs the omnibus cookbook, but does not actually run Omnibus. Use
+# 'kichen converge' to setup the virtual machine and then `kitchen login` to
+# SSH into the machine and run Omnibus.
+#
+
+driver:
+  name: vagrant
+  forward_agent: yes
+  customize:
+    cpus: 4
+    memory: 4096
+  synced_folders:
+    - ['.', '/home/vagrant/omnibus-chef']
+    - ['../omnibus', '/home/vagrant/omnibus']
+    - ['../omnibus-software', '/home/vagrant/omnibus-software']
+
+provisioner:
+  name: chef_zero
+  require_chef_omnibus: true # Always install the latest version of Chef
+
+platforms:
+  - name: centos-5.10
+    run_list: yum-epel::default
+  - name: centos-6.5
+    run_list: yum-epel::default
+  - name: centos-7.0
+    run_list: yum-epel::default
+  - name: debian-7.2.0
+    run_list: apt::default
+  - name: debian-7.4
+    run_list: apt::default
+  - name: debian-6.0.8
+    run_list: apt::default
+  - name: freebsd-9.2
+    run_list:
+      - freebsd::portsnap
+      - freebsd::pkgng
+  - name: freebsd-10.0
+    run_list: freebsd::portsnap
+  - name: ubuntu-10.04
+    run_list: apt::default
+  - name: ubuntu-12.04
+    run_list: apt::default
+  - name: ubuntu-12.10
+    run_list: apt::default
+  - name: ubuntu-13.04
+    run_list: apt::default
+  - name: ubuntu-13.10
+    run_list: apt::default
+  - name: ubuntu-14.04
+    run_list: apt::default
+
+attribute_defaults: &attribute_defaults
+  build_user:          vagrant
+  build_user_group:    vagrant
+  build_user_password: vagrant
+
+suites:
+  - name: apache
+    attributes:
+      omnibus:
+        <<: *attribute_defaults
+        install_dir: /opt/omnibus-apache
+    run_list:
+      - omnibus::default
+  - name: openssh
+    attributes:
+      omnibus:
+        <<: *attribute_defaults
+        install_dir: /opt/omnibus-openssh
+    run_list:
+      - omnibus::default
