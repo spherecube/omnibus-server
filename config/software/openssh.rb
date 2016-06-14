@@ -37,7 +37,8 @@ relative_path "openssh-#{version}"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  configure_args = [
+  configure = [
+    "./configure",
     "--prefix=#{install_dir}/embedded",
     "--with-zlib=#{install_dir}/embedded",
     "--with-ssl-dir=#{install_dir}/embedded",
@@ -51,10 +52,10 @@ build do
   ]
 
   if rhel?
-    configure_args . "--with-selinux"
+    configure_args.push("--with-selinux")
   end
 
-  configure_command = "./configure " . configure_args.join(" ")
+  command configure.join(" "), env: env
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env

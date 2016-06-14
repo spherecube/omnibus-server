@@ -38,18 +38,19 @@ build do
 
   update_config_guess
 
-  configure_args = [
+  configure = [
+    "./configure",
     "--prefix=#{install_dir}/embedded",
     "--with-z=#{install_dir}/embedded",
     "--with-ssl=#{install_dir}/embedded",
     "--with-nghttp2=#{install_dir}/embedded",
-    "--with-program-name=apache2"
+    "--with-program-name=apache2",
     "--enable-pie",
     "--enable-mods-shared=most",
     "--enable-mpms-shared=all"
   ]
 
-  configure_command = "./configure " . configure_args.join(" ")
+  command configure.join(" "), env: env
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env
