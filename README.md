@@ -17,9 +17,9 @@ The Apache that is shipped with this project includes all of the 1st party modul
 Supported Platforms/Distributions
 -------------------------------------
 
-CentOS 5 on x86 and x86_64
-CentOS 7 on x86_64
-Debian 8 on x86_64, armhf, and arm64
+* CentOS 5 on x86 and x86_64
+* CentOS 7 on x86_64
+* Debian 8 on x86_64, armhf, and arm64
 
 Installation
 ------------
