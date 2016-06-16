@@ -22,9 +22,7 @@ homepage "https://www.spherecube.host"
 build_iteration 1
 build_version '7.2p2-1.0.2h'
 
-else
-  install_dir "#{default_root}/omnibus-#{name}"
-end
+install_dir "#{default_root}/omnibus-#{name}"
 
 # Chef Release version pinning
 override :openssh, version: '7.2p2'

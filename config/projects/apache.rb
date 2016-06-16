@@ -22,9 +22,7 @@ homepage "https://www.spherecube.host"
 build_iteration 1
 build_version '2.4.20-1.0.2h'
 
-else
-  install_dir "#{default_root}/omnibus-#{name}"
-end
+install_dir "#{default_root}/omnibus-#{name}"
 
 # Chef Release version pinning
 override :apache, version: '2.4.20'
