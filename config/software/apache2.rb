@@ -29,7 +29,7 @@ version "2.4.20" do
   source sha1: "b08d6889100294fd89a2ff9c60137e70ef2e996b"
 end
 
-source url: "http://apache.mirrors.pair.com/httpd/httpd-#{version}.tar.gz"
+source url: "http://apache.osuosl.org/httpd/httpd-#{version}.tar.gz"
 
 relative_path "httpd-#{version}"
 
