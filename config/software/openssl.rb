@@ -55,7 +55,7 @@ build do
       end
     "#{prefix} disable-gost"
 
-  patch source: "openssl-1.0.1f-do-not-build-docs.patch", env: env
+  #patch source: "openssl-1.0.1f-do-not-build-docs.patch", env: env
 
   # Out of abundance of caution, we put the feature flags first and then
   # the crazy platform specific compiler flags at the end.
@@ -64,8 +64,8 @@ build do
   configure_command = configure_args.unshift(configure_cmd).join(" ")
 
   command configure_command, env: env, in_msys_bash: true
-  make "depend", env: env
+  make "-j #{workers} depend", env: env
   # make -j N on openssl is not reliable
-  make env: env
-  make "install", env: env
+  make "-j #{workers}", env: env
+  make "-j #{workers} install", env: env
 end

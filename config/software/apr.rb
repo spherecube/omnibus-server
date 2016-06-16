@@ -1,5 +1,5 @@
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright 2016 Sphere Cube LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,29 +14,30 @@
 # limitations under the License.
 #
 
-name "xproto"
-default_version "7.0.25"
+name "apr"
+default_version "1.5.2"
 
-version "7.0.28" do
-  source md5: "0b42843b99aee3e4f6a9cc7710143f86"
-end
-
-version "7.0.25" do
-  source md5: "a47db46cb117805bd6947aa5928a7436"
-end
-
-source url: "http://xorg.freedesktop.org/releases/individual/proto/xproto-#{version}.tar.gz"
-
-license "MIT"
+license "apache2"
 license_file "COPYING"
 
-relative_path "xproto-#{version}"
+version "1.5.2" do
+  source sha256: "1af06e1720a58851d90694a984af18355b65bb0d047be03ec7d659c746d6dbdb"
+end
+
+source url: "http://apache.osuosl.org/apr/apr-#{version}.tar.gz"
+
+relative_path "apr-#{version}"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  configure env: env
+  update_config_guess
 
+  config_command = [
+    "--enable-threads"
+  ]
+
+  configure(*config_command, env: env)
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env
 end

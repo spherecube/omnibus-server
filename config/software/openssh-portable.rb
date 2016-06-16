@@ -14,11 +14,11 @@
 # limitations under the License.
 #
 
-name "openssh"
-default_version "2.7p2"
+name "openssh-portable"
+default_version "7.2p2"
 
-license "bsd"
-license_file "COPYING"
+license "BSD-3-Clause"
+license_file "LICENCE"
 
 dependency "config_guess"
 dependency "zlib"
@@ -26,7 +26,7 @@ dependency "openssl"
 dependency "libedit"
 dependency "ldns"
 
-version "2.7p2" do
+version "7.2p2" do
   source sha256: "a72781d1a043876a224ff1b0032daa4094d87565a68528759c1c2cab5482548c"
 end
 
@@ -34,11 +34,13 @@ source url: "http://openbsd.mirrors.pair.com/OpenSSH/portable/openssh-#{version}
 
 relative_path "openssh-#{version}"
 
+whitelist_file /.*\/libpam\.so\..+/
+whitelist_file /.*\/libaudit\.so\..+/
+
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  configure = [
-    "./configure",
+  config_command = [
     "--prefix=#{install_dir}/embedded",
     "--with-zlib=#{install_dir}/embedded",
     "--with-ssl-dir=#{install_dir}/embedded",
@@ -52,10 +54,10 @@ build do
   ]
 
   if rhel?
-    configure_args.push("--with-selinux")
+    config_command << "--with-selinux"
   end
 
-  command configure.join(" "), env: env
+  configure(*config_command, env: env)
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env

@@ -1,0 +1,14 @@
+--- /home/caperry/projects/omnibus-server/work/src/ldns/ldns-1.6.17/Makefile.in	2014-01-10 15:04:41.000000000 -0600
++++ ldns-1.6.17/Makefile.in	2016-06-15 23:07:29.746091155 -0500
+@@ -270,9 +270,9 @@
+ test-p5-dns-ldns: $(p5_dns_ldns_dir)/Makefile
+ 	cd $(p5_dns_ldns_dir); $(MAKE) test
+ 
+-install: install-h install-lib @INSTALL_CONFIG@ install-manpages $(pyldns_inst) $(pyldnsx_inst) @INSTALL_P5_DNS_LDNS@ @INSTALL_DRILL@ @INSTALL_EXAMPLES@
++install: install-h install-lib @INSTALL_CONFIG@ $(pyldns_inst) $(pyldnsx_inst) @INSTALL_P5_DNS_LDNS@ @INSTALL_DRILL@ @INSTALL_EXAMPLES@
+ 
+-uninstall: uninstall-manpages @UNINSTALL_CONFIG@ uninstall-h uninstall-lib $(pyldns_uninst) $(pyldnsx_uninst) @UNINSTALL_P5_DNS_LDNS@ @UNINSTALL_DRILL@ @UNINSTALL_EXAMPLES@
++uninstall: @UNINSTALL_CONFIG@ uninstall-h uninstall-lib $(pyldns_uninst) $(pyldnsx_uninst) @UNINSTALL_P5_DNS_LDNS@ @UNINSTALL_DRILL@ @UNINSTALL_EXAMPLES@
+ 
+ destclean: uninstall
+ 

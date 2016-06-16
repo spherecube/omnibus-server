@@ -1,5 +1,6 @@
 #
 # Copyright 2012-2014 Chef Software, Inc.
+# Copyright 2016 Sphere Cube LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,7 +16,7 @@
 #
 
 name "libxml2"
-default_version "2.9.3"
+default_version "2.9.4"
 
 license "MIT"
 license_file "COPYING"
@@ -25,6 +26,9 @@ dependency "libiconv"
 dependency "liblzma"
 dependency "config_guess"
 
+version "2.9.4" do
+  source sha256: "ffb911191e509b966deb55de705387f14156e1a56b21824357cdf0053233633c"
+end
 version "2.9.3" do
   source md5: "daece17e045f1c107610e137ab50c179"
 end
@@ -43,17 +47,10 @@ build do
     "--without-icu",
   ]
 
-  # solaris 10 ipv6 support is broken due to no inet_ntop() in -lnsl
-  configure_command << "--enable-ipv6=no" if solaris_10?
-
   update_config_guess
 
   configure(*configure_command, env: env)
 
-  if windows?
-    make env: env
-  else
-    make "-j #{workers}", env: env
-  end
+  make "-j #{workers}", env: env
   make "install", env: env
 end

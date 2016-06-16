@@ -33,7 +33,6 @@ windows_arch   %w{x86 x64}.include?((ENV['OMNIBUS_WINDOWS_ARCH'] || '').downcase
 # ------------------------------
 # use_git_caching false
 
-build_retries 3
 fetcher_retries 3
 fetcher_read_timeout 120
 

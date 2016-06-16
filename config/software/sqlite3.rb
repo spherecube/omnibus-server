@@ -1,5 +1,5 @@
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright 2016 Sphere Cube LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,29 +14,30 @@
 # limitations under the License.
 #
 
-name "xproto"
-default_version "7.0.25"
+name "sqlite3"
+default_version "3.13.0"
 
-version "7.0.28" do
-  source md5: "0b42843b99aee3e4f6a9cc7710143f86"
-end
-
-version "7.0.25" do
-  source md5: "a47db46cb117805bd6947aa5928a7436"
-end
-
-source url: "http://xorg.freedesktop.org/releases/individual/proto/xproto-#{version}.tar.gz"
-
-license "MIT"
+license "apache2"
 license_file "COPYING"
 
-relative_path "xproto-#{version}"
+version "3.13.0" do
+  source url: "https://sqlite.org/2016/sqlite-autoconf-3130000.tar.gz"
+  source sha1: "f6f76e310389e3f510b23826f805850449ae8653"
+  relative_path "sqlite-autoconf-3130000"
+end
+
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  configure env: env
+  update_config_guess
 
+  config_command = [
+    "--disable-readline",
+    "--enable-editline"
+  ]
+
+  configure(*config_command, env: env)
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env
 end

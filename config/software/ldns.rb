@@ -1,5 +1,5 @@
 #
-# Copyright 2014 Chef Software, Inc.
+# Copyright 2016 Sphere Cube LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,28 +14,32 @@
 # limitations under the License.
 #
 
-name "xproto"
-default_version "7.0.25"
+name "ldns"
+default_version "1.6.17"
 
-version "7.0.28" do
-  source md5: "0b42843b99aee3e4f6a9cc7710143f86"
+version "1.6.17" do
+  source sha1: "4218897b3c002aadfc7280b3f40cda829e05c9a4"
 end
 
-version "7.0.25" do
-  source md5: "a47db46cb117805bd6947aa5928a7436"
-end
+source url: "https://www.nlnetlabs.nl/downloads/ldns/ldns-#{version}.tar.gz"
 
-source url: "http://xorg.freedesktop.org/releases/individual/proto/xproto-#{version}.tar.gz"
+license "BSD"
+license_file "LICENSE"
 
-license "MIT"
-license_file "COPYING"
+dependency "openssl"
 
-relative_path "xproto-#{version}"
+relative_path "ldns-#{version}"
 
 build do
-  env = with_standard_compiler_flags(with_embedded_path)
+  env = with_standard_compiler_flags
 
-  configure env: env
+  patch source: "disable-manpages.patch"
+
+  config_command = [
+    "--with-ssl=#{install_dir}/embedded",
+  ]
+
+  configure(*config_command, env: env)
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env

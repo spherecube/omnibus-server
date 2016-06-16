@@ -25,7 +25,7 @@ license_file "http://invisible-island.net/ncurses/ncurses.faq.html"
 dependency "config_guess"
 
 version("5.9") { source md5: "8cb9c412e5f2d96bc6f459aa8c6282a1", url: "https://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz" }
-version("6.0") { source sha256: "f551c24b30ce8bfb6e96d9f59b42fbea30fa3a6123384172f9e7284bcf647260", url: "https://ftp.gnu.org/gnu/ncurses/ncurses-5.9.tar.gz" }
+version("6.0") { source sha256: "f551c24b30ce8bfb6e96d9f59b42fbea30fa3a6123384172f9e7284bcf647260", url: "https://ftp.gnu.org/gnu/ncurses/ncurses-6.0.tar.gz" }
 
 relative_path "ncurses-#{version}"
 
@@ -33,9 +33,9 @@ build do
   env = with_standard_compiler_flags(with_embedded_path)
   env.delete("CPPFLAGS")
 
-  configure_command = [
-    "./configure",
-    "--prefix=#{install_dir}/embedded",
+  patch source: "ncurses-5.9-gcc-5.patch", env: env
+
+  config_command = [
     "--enable-overwrite",
     "--with-shared",
     "--with-termlib",
@@ -45,7 +45,7 @@ build do
     "--without-manpages",
   ]
 
-  command configure_command.join(" "), env: env
+  configure(*config_command, env: env)
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env

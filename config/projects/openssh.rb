@@ -29,7 +29,7 @@ override :openssh, version: '7.2p2'
 override :openssl, version: '1.0.2h'
 
 
-dependency "openssh"
+dependency "openssh-portable"
 
 package :rpm do
   signing_passphrase ENV['OMNIBUS_RPM_SIGNING_PASSPHRASE']

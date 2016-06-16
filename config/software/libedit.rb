@@ -15,7 +15,7 @@
 #
 
 name "libedit"
-default_version "20120601-3.0"
+default_version "20150325-3.1"
 
 license "BSD-3-Clause"
 license_file "COPYING"
@@ -52,8 +52,7 @@ build do
 
   update_config_guess
 
-  command "./configure" \
-          " --prefix=#{install_dir}/embedded", env: env
+  configure env: env
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env

@@ -30,11 +30,9 @@ relative_path "libev-#{version}"
 build do
   env = with_standard_compiler_flags(with_embedded_path, bfd_flags: true)
 
-  configure(env: env)
+  configure env: env
 
-  pmake = "-j #{workers}"
-  make "#{pmake}", env: env
-  make "#{pmake} install-lib" \
-          " libdir=#{install_dir}/embedded/lib" \
-          " includedir=#{install_dir}/embedded/include", env: env
+  make "-j #{workers}", env: env
+  make "-j #{workers} install"
+
 end

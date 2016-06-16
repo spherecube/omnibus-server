@@ -1,4 +1,5 @@
 #
+# Copyright 2012-2014 Chef Software, Inc.
 # Copyright 2016 Sphere Cube LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,27 +15,31 @@
 # limitations under the License.
 #
 
-name "apache2"
-default_version "2.4.20"
+name "pcre"
+default_version "8.39"
 
-license "apache2"
-license_file "COPYING"
+license "BSD-2-Clause"
+license_file "LICENCE"
 
+dependency "libedit"
+dependency "ncurses"
 dependency "config_guess"
-dependency "zlib"
-dependency "openssl"
-dependency "nghttp2"
-dependency "pcre"
-dependency "apr"
-dependency "apr-util"
 
-version "2.4.20" do
-  source sha1: "b08d6889100294fd89a2ff9c60137e70ef2e996b"
+version "8.39" do
+  source sha256: "ccdf7e788769838f8285b3ee672ed573358202305ee361cfec7a4a4fb005bbc7"
 end
 
-source url: "http://apache.osuosl.org/httpd/httpd-#{version}.tar.gz"
+version "8.38" do
+  source md5: "8a353fe1450216b6655dfcf3561716d9"
+end
 
-relative_path "httpd-#{version}"
+version "8.31" do
+  source md5: "fab1bb3b91a4c35398263a5c1e0858c1"
+end
+
+source url: "http://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-#{version}.tar.gz"
+
+relative_path "pcre-#{version}"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
@@ -42,18 +47,14 @@ build do
   update_config_guess
 
   config_command = [
-    "--with-z=#{install_dir}/embedded",
-    "--with-ssl=#{install_dir}/embedded",
-    "--with-nghttp2=#{install_dir}/embedded",
-    "--with-apr=#{install_dir}/embedded",
-    "--with-apr-util=#{install_dir}/embedded",
-    "--with-program-name=apache2",
-    "--enable-pie",
-    "--enable-mods-shared=most",
-    "--enable-mpms-shared=all"
+    "--disable-cpp",
+    "--enable-utf",
+    "--enable-unicode-properties",
+    "--enable-pcretest-libedit"
   ]
 
   configure(*config_command, env: env)
+
   make "-j #{workers}", env: env
-  make "-j #{workers} install", env: env
+  make "install", env: env
 end

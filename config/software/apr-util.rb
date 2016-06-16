@@ -14,27 +14,22 @@
 # limitations under the License.
 #
 
-name "apache2"
-default_version "2.4.20"
+name "apr-util"
+default_version "1.5.4"
 
 license "apache2"
 license_file "COPYING"
 
-dependency "config_guess"
-dependency "zlib"
-dependency "openssl"
-dependency "nghttp2"
-dependency "pcre"
-dependency "apr"
-dependency "apr-util"
-
-version "2.4.20" do
-  source sha1: "b08d6889100294fd89a2ff9c60137e70ef2e996b"
+version "1.5.4" do
+  source sha256: "976a12a59bc286d634a21d7be0841cc74289ea9077aa1af46be19d1a6e844c19"
 end
 
-source url: "http://apache.osuosl.org/httpd/httpd-#{version}.tar.gz"
+source url: "http://apache.osuosl.org/apr/apr-util-#{version}.tar.gz"
 
-relative_path "httpd-#{version}"
+dependency "libiconv"
+dependency "sqlite3"
+
+relative_path "apr-util-#{version}"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
@@ -42,15 +37,14 @@ build do
   update_config_guess
 
   config_command = [
-    "--with-z=#{install_dir}/embedded",
-    "--with-ssl=#{install_dir}/embedded",
-    "--with-nghttp2=#{install_dir}/embedded",
     "--with-apr=#{install_dir}/embedded",
-    "--with-apr-util=#{install_dir}/embedded",
-    "--with-program-name=apache2",
-    "--enable-pie",
-    "--enable-mods-shared=most",
-    "--enable-mpms-shared=all"
+    "--with-crypto",
+    "--with-openssl=#{install_dir}/embedded",
+    "--with-iconv=#{install_dir}/embedded",
+    "--with-sqlite3=#{install_dir}/embedded",
+    "--without-odbc",
+    "--without-sqlite2",
+    "--with-expat=builtin"
   ]
 
   configure(*config_command, env: env)

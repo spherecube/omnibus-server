@@ -35,11 +35,13 @@ build do
 
   update_config_guess
 
-  command "./configure" \
-          " --prefix=#{install_dir}/embedded" \
-          " --disable-host-tool" \
-          " --with-pc-path=#{install_dir}/embedded/bin/pkgconfig", env: env
+  config_command = [
+    " --prefix=#{install_dir}/embedded",
+    " --disable-host-tool",
+    " --with-pc-path=#{install_dir}/embedded/bin/pkgconfig"
+  ]
 
+  configure(*config_command, env: env)
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env
 end

@@ -37,19 +37,15 @@ relative_path "nghttp2-#{version}"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  configure = [
-    "./configure",
+  config_command = [
     "--prefix=#{install_dir}/embedded",
     "--with-xml-prefix=#{install_dir}/embedded",
     "--disable-examples",
     "--disable-hpack-tools",
-    "--disable-python-bindings",
-    "--enable-mpm-shared=all"
+    "--disable-python-bindings"
   ]
 
-  configure_command = configure.join(" ")
-
-  command configure_command, env: env
+  configure(*config_command, env: env)
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env

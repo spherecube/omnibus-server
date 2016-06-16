@@ -1,5 +1,6 @@
 #
 # Copyright 2014 Chef, Inc.
+# Copyright 2016 Sphere Cube LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -32,11 +33,7 @@ dependency "pkg-config-lite"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  if solaris_10?
-    env["PKG_CONFIG"] = "#{install_dir}/embedded/bin/pkg-config"
-  end
-
-  command "./configure --prefix=#{install_dir}/embedded", env: env
+  configure env: env
 
   make "-j #{workers}", env: env
   make "-j #{workers} install", env: env
