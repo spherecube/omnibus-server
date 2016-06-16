@@ -29,16 +29,15 @@ license_file "README"
 relative_path "zlib-#{version}"
 
 build do
-    env = with_standard_compiler_flags
-    if freebsd?
-      # FreeBSD 10+ gets cranky if zlib is not compiled in a
-      # position-independent way.
-      env["CFLAGS"] << " -fPIC"
-    end
-
-    configure env: env
-
-    make "-j #{workers}", env: env
-    make "-j #{workers} install", env: env
+  env = with_standard_compiler_flags
+  if freebsd?
+    # FreeBSD 10+ gets cranky if zlib is not compiled in a
+    # position-independent way.
+    env["CFLAGS"] << " -fPIC"
   end
+
+  configure env: env
+
+  make "-j #{workers}", env: env
+  make "-j #{workers} install", env: env
 end
