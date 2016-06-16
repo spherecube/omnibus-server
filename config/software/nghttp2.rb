@@ -37,7 +37,8 @@ relative_path "nghttp2-#{version}"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
-  configure_args = [
+  configure = [
+    "./configure",
     "--prefix=#{install_dir}/embedded",
     "--with-xml-prefix=#{install_dir}/embedded",
     "--disable-examples",
@@ -46,7 +47,7 @@ build do
     "--enable-mpm-shared=all"
   ]
 
-  configure_command = "./configure " . configure_args.join(" ")
+  configure_command = configure.join(" ")
 
   command configure_command, env: env
 
