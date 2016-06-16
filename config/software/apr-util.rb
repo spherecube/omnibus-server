@@ -17,7 +17,7 @@
 name "apr-util"
 default_version "1.5.4"
 
-license "apache2"
+license "Apache-2.0"
 license_file "COPYING"
 
 version "1.5.4" do

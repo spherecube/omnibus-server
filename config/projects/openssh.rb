@@ -28,6 +28,8 @@ install_dir "#{default_root}/omnibus-#{name}"
 override :openssh, version: '7.2p2'
 override :openssl, version: '1.0.2h'
 
+license "Apache-2.0"
+license_file "LICENSE"
 
 dependency "openssh-portable"
 

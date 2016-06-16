@@ -17,7 +17,7 @@
 name "libev"
 default_version "4.22"
 
-license "BSD"
+license "BSD-2-Clause"
 license_file "LICENSE"
 
 dependency "config_guess"

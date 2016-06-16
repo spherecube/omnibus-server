@@ -17,7 +17,7 @@
 name "apr"
 default_version "1.5.2"
 
-license "apache2"
+license "Apache-2.0"
 license_file "COPYING"
 
 version "1.5.2" do

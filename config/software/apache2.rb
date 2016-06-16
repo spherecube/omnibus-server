@@ -17,7 +17,7 @@
 name "apache2"
 default_version "2.4.20"
 
-license "apache2"
+license "Apache-2.0"
 license_file "COPYING"
 
 dependency "config_guess"
