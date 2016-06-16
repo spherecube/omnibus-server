@@ -17,8 +17,8 @@
 name "sqlite3"
 default_version "3.13.0"
 
-license "apache2"
-license_file "COPYING"
+license "public-domain"
+license_file "sqlite3.c"
 
 version "3.13.0" do
   source url: "https://sqlite.org/2016/sqlite-autoconf-3130000.tar.gz"

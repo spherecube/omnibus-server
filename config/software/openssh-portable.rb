@@ -34,8 +34,8 @@ source url: "http://openbsd.mirrors.pair.com/OpenSSH/portable/openssh-#{version}
 
 relative_path "openssh-#{version}"
 
-whitelist_file /.*\/libpam\.so\..+/
-whitelist_file /.*\/libaudit\.so\..+/
+# This depends on pam and libaudit, so we just whitelist it
+whitelist_file "sbin/sshd"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)

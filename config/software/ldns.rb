@@ -23,7 +23,7 @@ end
 
 source url: "https://www.nlnetlabs.nl/downloads/ldns/ldns-#{version}.tar.gz"
 
-license "BSD"
+license "BSD-3-Clause"
 license_file "LICENSE"
 
 dependency "openssl"
