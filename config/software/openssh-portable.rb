@@ -25,6 +25,8 @@ dependency "zlib"
 dependency "openssl"
 dependency "libedit"
 dependency "ldns"
+dependency "liblzma"
+dependency "pcre"
 
 version "7.2p2" do
   source sha256: "a72781d1a043876a224ff1b0032daa4094d87565a68528759c1c2cab5482548c"
@@ -36,6 +38,11 @@ relative_path "openssh-#{version}"
 
 # This depends on pam and libaudit, so we just whitelist it
 whitelist_file "sbin/sshd"
+
+# On RHEL platforms, selinux is included to the ssh and sshd binaries so we whitelist
+if rhel?
+  whitelist_file "bin/ssh"
+end
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
