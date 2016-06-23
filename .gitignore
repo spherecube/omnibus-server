@@ -14,5 +14,4 @@ build_timestamp
 ldd.out
 jenkins/chef-solo
 work/*
-Gemfile.lock
 Berksfile.lock
