@@ -24,7 +24,7 @@ license_file "COPYING.LIB"
 dependency "config_guess"
 
 source url: "https://ftp.gnu.org/pub/gnu/libiconv/libiconv-#{version}.tar.gz",
-       md5: "e34509b1623cec449dfeb73d7ce9c6c6"
+       sha256: "72b24ded17d687193c3366d0ebe7cde1e6b18f0df8c55438ac95be39e8a30613"
 
 relative_path "libiconv-#{version}"
 
