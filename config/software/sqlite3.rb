@@ -15,15 +15,15 @@
 #
 
 name "sqlite3"
-default_version "3.13.0"
+default_version "3.15.2"
 
 license "public-domain"
 license_file "sqlite3.c"
 
-version "3.13.0" do
-  source url: "https://sqlite.org/2016/sqlite-autoconf-3130000.tar.gz"
-  source sha1: "f6f76e310389e3f510b23826f805850449ae8653"
-  relative_path "sqlite-autoconf-3130000"
+version "3.15.2" do
+  source url: "https://sqlite.org/2016/sqlite-autoconf-3150200.tar.gz"
+  source sha1: "31f52169bcfeef9efb61480d0950e928ad059552"
+  relative_path "sqlite-autoconf-3150200"
 end
 
 
