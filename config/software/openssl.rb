@@ -20,12 +20,12 @@ name "openssl"
 license "OpenSSL"
 license_file "LICENSE"
 
-dependency "zlib"
 dependency "makedepend"
 
 source url: "https://www.openssl.org/source/openssl-#{version}.tar.gz", extract: :lax_tar
 
 version("1.1.0c") { source sha256: "fc436441a2e05752d31b4e46115eb89709a28aef96d4fe786abe92409b2fd6f5"}
+version("1.0.2j") { source sha256: "e7aff292be21c259c6af26469c7a9b3ba26e9abaaffd325e3dccc9785256c431"}
 
 relative_path "openssl-#{version}"
 
@@ -35,13 +35,18 @@ build do
 
   configure_args = [
     "--prefix=#{install_dir}/embedded",
-    "--with-zlib-lib=#{install_dir}/embedded/lib",
-    "--with-zlib-include=#{install_dir}/embedded/include",
     "no-idea",
     "no-mdc2",
     "no-rc5",
     "shared",
-    "zlib"
+    "no-ssl",
+    "no-ssl3",
+    "no-ssl3-method",
+    "enable-unit-test",
+    "enable-rfc3779",
+    "enable-cms",
+    "disable-gost",
+    "no-zlib"
   ]
 
   configure_cmd =
@@ -53,9 +58,6 @@ build do
       else
         "./config"
       end
-    "#{prefix} disable-gost"
-
-  #patch source: "openssl-1.0.1f-do-not-build-docs.patch", env: env
 
   # Out of abundance of caution, we put the feature flags first and then
   # the crazy platform specific compiler flags at the end.
