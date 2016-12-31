@@ -28,13 +28,18 @@ source url: "http://apache.osuosl.org/apr/apr-util-#{version}.tar.gz"
 
 dependency "libiconv"
 dependency "sqlite3"
+dependency "openssl"
 
 relative_path "apr-util-#{version}"
 
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
+  patch source: "openssl-1.1.patch", env: env
+
   update_config_guess
+
+  command "autoconf"
 
   config_command = [
     "--with-apr=#{install_dir}/embedded",
