@@ -15,7 +15,7 @@
 #
 
 name "openssh-portable"
-default_version "7.2p2"
+default_version "7.4p1"
 
 license "BSD-3-Clause"
 license_file "LICENCE"
@@ -28,9 +28,10 @@ dependency "ldns"
 dependency "liblzma"
 dependency "pcre"
 
-version "7.2p2" do
-  source sha256: "a72781d1a043876a224ff1b0032daa4094d87565a68528759c1c2cab5482548c"
+version "7.4p1" do
+  source sha256: "1b1fc4a14e2024293181924ed24872e6f2e06293f3e8926a376b8aec481f19d1"
 end
+
 
 source url: "http://openbsd.mirrors.pair.com/OpenSSH/portable/openssh-#{version}.tar.gz"
 
