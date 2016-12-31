@@ -37,15 +37,17 @@ build do
     "--prefix=#{install_dir}/embedded",
     "no-idea",
     "no-mdc2",
+    "no-rc2",
+    "no-rc4",
     "no-rc5",
     "shared",
     "no-ssl",
+    "no-ssl2",
     "no-ssl3",
     "no-ssl3-method",
     "enable-unit-test",
     "enable-rfc3779",
     "enable-cms",
-    "disable-gost",
     "no-zlib"
   ]
 

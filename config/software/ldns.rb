@@ -37,6 +37,7 @@ build do
 
   config_command = [
     "--with-ssl=#{install_dir}/embedded",
+    "--disable-dane-ta-usage", # Only supported in OpenSSL 1.1 and later
   ]
 
   configure(*config_command, env: env)
