@@ -15,7 +15,7 @@
 #
 
 name "apache2"
-default_version "2.4.20"
+default_version "2.4.25"
 
 license "Apache-2.0"
 license_file "COPYING"
@@ -28,8 +28,8 @@ dependency "pcre"
 dependency "apr"
 dependency "apr-util"
 
-version "2.4.20" do
-  source sha1: "b08d6889100294fd89a2ff9c60137e70ef2e996b"
+version "2.4.25" do
+  source sha1: "377c62dc6b25c9378221111dec87c28f8fe6ac69"
 end
 
 source url: "http://apache.osuosl.org/httpd/httpd-#{version}.tar.gz"
