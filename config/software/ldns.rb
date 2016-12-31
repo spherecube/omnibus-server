@@ -15,10 +15,10 @@
 #
 
 name "ldns"
-default_version "1.6.17"
+default_version "1.7.0"
 
-version "1.6.17" do
-  source sha1: "4218897b3c002aadfc7280b3f40cda829e05c9a4"
+version "1.7.0" do
+  source sha1: "ceeeccf8a27e61a854762737f6ee02f44662c1b8"
 end
 
 source url: "https://www.nlnetlabs.nl/downloads/ldns/ldns-#{version}.tar.gz"
