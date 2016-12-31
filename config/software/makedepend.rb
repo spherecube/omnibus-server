@@ -22,7 +22,7 @@ license "MIT"
 license_file "COPYING"
 
 source url: "http://xorg.freedesktop.org/releases/individual/util/makedepend-1.0.5.tar.gz",
-       md5: "efb2d7c7e22840947863efaedc175747"
+       sha256: "503903d41fb5badb73cb70d7b3740c8b30fe1cc68c504d3b6a85e6644c4e5004"
 
 relative_path "makedepend-1.0.5"
 
