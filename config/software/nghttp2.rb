@@ -15,7 +15,7 @@
 #
 
 name "nghttp2"
-default_version "1.11.1"
+default_version "1.18.0"
 
 license "MIT"
 license_file "COPYING"
@@ -26,8 +26,8 @@ dependency "zlib"
 dependency "libev"
 dependency "libxml2"
 
-version "1.11.1" do
-  source sha256: "6a920d3d6b21f6f7e3aa0061f187bfd0cbf35c3cd2b61cd3fce0af896609b877"
+version "1.18.0" do
+  source sha256: "30b7a1fc21f58eadbcd124791dd7dbda50b9d4ad113b49d78d04ded49c22be8a"
 end
 
 source url: "https://github.com/nghttp2/nghttp2/releases/download/v#{version}/nghttp2-#{version}.tar.gz"
