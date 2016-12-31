@@ -1,5 +1,6 @@
 #
 # Copyright 2014 Chef Software, Inc.
+# Copytight 2016 Sphere Cube LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,14 +16,10 @@
 #
 
 name "xproto"
-default_version "7.0.25"
+default_version "7.0.31"
 
-version "7.0.28" do
-  source md5: "0b42843b99aee3e4f6a9cc7710143f86"
-end
-
-version "7.0.25" do
-  source md5: "a47db46cb117805bd6947aa5928a7436"
+version "7.0.31" do
+  source sha256: "6d755eaae27b45c5cc75529a12855fed5de5969b367ed05003944cf901ed43c7"
 end
 
 source url: "http://xorg.freedesktop.org/releases/individual/proto/xproto-#{version}.tar.gz"
