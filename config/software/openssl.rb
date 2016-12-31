@@ -25,7 +25,7 @@ dependency "makedepend"
 
 source url: "https://www.openssl.org/source/openssl-#{version}.tar.gz", extract: :lax_tar
 
-version("1.0.2h") { source sha256: "1d4007e53aad94a5b2002fe045ee7bb0b3d98f1a47f8b2bc851dcd1c74332919"}
+version("1.1.0c") { source sha256: "fc436441a2e05752d31b4e46115eb89709a28aef96d4fe786abe92409b2fd6f5"}
 
 relative_path "openssl-#{version}"
 
