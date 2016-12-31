@@ -23,7 +23,7 @@ license_file "LICENSE"
 dependency "config_guess"
 
 source url: "http://dist.schmorp.de/libev/Attic/libev-#{version}.tar.gz",
-       sha256: "4932afab4c92e21d9ae3f6752b1ed7fe9c61c2811c6c77559390c262491f02a9"
+       sha256: "973593d3479abdf657674a55afe5f78624b0e440614e2b8cb3a07f16d4d7f821"
 
 relative_path "libev-#{version}"
 
