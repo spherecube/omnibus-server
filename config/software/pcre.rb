@@ -29,14 +29,6 @@ version "8.39" do
   source sha256: "ccdf7e788769838f8285b3ee672ed573358202305ee361cfec7a4a4fb005bbc7"
 end
 
-version "8.38" do
-  source md5: "8a353fe1450216b6655dfcf3561716d9"
-end
-
-version "8.31" do
-  source md5: "fab1bb3b91a4c35398263a5c1e0858c1"
-end
-
 source url: "http://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-#{version}.tar.gz"
 
 relative_path "pcre-#{version}"
