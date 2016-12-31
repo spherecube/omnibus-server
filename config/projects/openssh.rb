@@ -20,13 +20,13 @@ maintainer "Sphere Cube LLC <omnibus-server@spherecube.host>"
 homepage "https://www.spherecube.host"
 
 build_iteration 1
-build_version '7.2p2-1.0.2h'
+build_version '7.4p1-1.1.0c'
 
 install_dir "#{default_root}/omnibus-#{name}"
 
 # Chef Release version pinning
-override :openssh, version: '7.2p2'
-override :openssl, version: '1.0.2h'
+override :openssh, version: '7.4p1'
+override :openssl, version: '1.1.0c'
 
 license "Apache-2.0"
 license_file "LICENSE"
