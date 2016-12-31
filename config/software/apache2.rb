@@ -39,6 +39,9 @@ relative_path "httpd-#{version}"
 build do
   env = with_standard_compiler_flags(with_embedded_path)
 
+  # We need to tell apache that SSL2 is not available
+  env["CFLAGS"] << " -DOPENSSL_NO_SSL2"
+
   update_config_guess
 
   config_command = [
@@ -49,7 +52,11 @@ build do
     "--with-apr-util=#{install_dir}/embedded",
     "--with-program-name=apache2",
     "--enable-pie",
+    "--enable-http2",
+    "--enable-proxy-http2",
+    "--disable-static-ab",
     "--enable-mods-shared=most",
+    '--enable-mods-static="unixd logio watchdog version"',
     "--enable-mpms-shared=all"
   ]
 
